@@ -38,12 +38,12 @@ chown -R $DJANGO_USERNAME:$DJANGO_USERNAME $DJANGO_HOMEDIR
 
 # create the tables for the default installed apps on the database
 echo
-sudo su - $DJANGO_USERNAME -c "cd $DJANGO_HOMEDIR/$DJANGO_PROJ_NAME; python3 manage.py migrate"
+sudo su - $DJANGO_USERNAME -c "cd $DJANGO_PROJ_NAME; python3 manage.py migrate"
 handle_error $? "Error migrating database tables"
 
 # creating superuser
 echo
-sudo su - $DJANGO_USERNAME -c "cd $DJANGO_HOMEDIR/$DJANGO_PROJ_NAME; DJANGO_SUPERUSER_PASSWORD=$DJANGO_SUPERUSER_PASSWORD python3 manage.py createsuperuser --no-input --username $DJANGO_SUPERUSER_USERNAME --email $DJANGO_SUPERUSER_EMAIL"
+sudo su - $DJANGO_USERNAME -c "cd $DJANGO_PROJ_NAME; DJANGO_SUPERUSER_PASSWORD=$DJANGO_SUPERUSER_PASSWORD python3 manage.py createsuperuser --no-input --username $DJANGO_SUPERUSER_USERNAME --email $DJANGO_SUPERUSER_EMAIL"
 handle_error $? "Error migrating superuser $DJANGO_SUPERUSER_USERNAME"
 
 echo "  * username is $DJANGO_SUPERUSER_USERNAME"
