@@ -4,9 +4,7 @@ E_OK=0
 E_ERR=1
 
 DJANGO_SUPERUSER_PASSWORD=$(makepasswd)
-DJANGO_PACKAGES="python3-django python3-djangorestframework python3-psycopg2 gunicorn postgresql-client vim makepasswd"
-
-SRC_DIR=./src
+DJANGO_PACKAGES="python3-django python3-djangorestframework python3-psycopg2 gunicorn postgresql-client vim makepasswd rsync"
 
 # load variables from configuration file
 . conf/vars.env
