@@ -12,4 +12,4 @@ Steps to deploy a new version, after the first install:
 * execute `sudo ./deploy.sh`
 * review the output
 
-This process has been tested on Ubuntu 24.04.
+This process has been tested on Ubuntu 24.04 and is suitable for development. Production deployment is a different story, outside the scope of this repository.
