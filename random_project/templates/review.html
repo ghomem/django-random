@@ -1,0 +1,33 @@
+{% extends "base_nav.html" %}
+
+{% block content %}
+
+<article>Hi {{ user.username }}! You can review the generated numbers here. They can be deleted using the <a href={% url 'admin:index' %} target="_blank">admin interface.</a></article>
+<article>
+  <div id="the-table">
+    {% if number_list %}
+      <table>
+	<thead>
+	  <th scope="col">Number</th>
+	  <th scope="col">Generation timestamp</th>
+	</thead>
+	<tbody>
+	  {% for number in number_list %}
+	    <tr>
+	      <td>{{ number.number }}</td>
+	      <td>{{ number.gen_date }}</td>
+	    </tr>
+          {% endfor %} 
+    {% else %}
+      <p>No numbers are available.</p>
+    {% endif %} 
+      </table>
+  </div>
+</article>
+
+<form action="{% url 'logout' %}" method="post">
+  {% csrf_token %}
+  <button type="submit">Log Out</button>
+</form>
+
+{% endblock %}

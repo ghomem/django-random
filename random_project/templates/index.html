@@ -1,0 +1,18 @@
+{% extends "base_nav.html" %}
+
+{% block content %}
+
+<article>Hi {{ user.username }}! Use the Get Number button to request random numbers.</article>
+<article><div id="the-number" hx-swap-oob="true" style="text-align: right"><h1>...</h1></div></article>
+
+<form hx-post="/{{ APP_NAME }}/get_number" hx-target="#the-number" autocomplete="off">
+  {% csrf_token %}
+  <button class="secondary" type="submit">Get Number</button>
+</form>
+
+<form action="{% url 'logout' %}" method="post">
+  {% csrf_token %}
+  <button type="submit">Log Out</button>
+</form>
+
+{% endblock %}

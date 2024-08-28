@@ -1,0 +1,17 @@
+<!-- templates/registration/login.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Welcome to {{ APP_DISPLAY_NAME }}</h2>
+
+<article class="grid">
+  <div>
+    <form method="post">
+      {% csrf_token %}
+      {{ form }}
+      <button type="submit">Log In</button>
+    </form>
+  </div>
+</article>
+
+{% endblock %}
