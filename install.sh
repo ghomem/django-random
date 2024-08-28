@@ -31,7 +31,7 @@ adduser --system --home=$DJANGO_HOMEDIR --disabled-password --group --shell=/bin
 handle_error $? "Error adding user $DJANGO_USERNAME"
 
 # symlink the execution directory to this repo
-ln -s ./random_project $DJANGO_HOMEDIR/random_project
+ln -s $PWD/random_project $DJANGO_HOMEDIR/random_project
 
 # make sure all the content belongs do DJANGO_USERNAME
 chown -R $DJANGO_USERNAME:$DJANGO_USERNAME $DJANGO_HOMEDIR
