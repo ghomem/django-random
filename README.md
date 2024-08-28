@@ -8,6 +8,6 @@ Steps to install:
 
 Steps to deploy a new version, after the first install:
 
-* execute `git pull`
+* perform local changes or pull remote changes with `git pull`
 * execute `sudo ./deploy.sh`
 * review the output
