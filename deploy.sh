@@ -16,7 +16,7 @@ handle_error $? "Please run this script as root."
 echo "Deploying to $DJANGO_HOMEDIR/random_project"
 
 # copy the application to the destination directory
-rsync -a --delete ./$DJANGO_PROJ_NAME $DJANGO_HOMEDIR/
+rsync -a ./$DJANGO_PROJ_NAME $DJANGO_HOMEDIR/
 
 # make sure all the content belongs do DJANGO_USERNAME
 chown -R $DJANGO_USERNAME:$DJANGO_USERNAME $DJANGO_HOMEDIR
