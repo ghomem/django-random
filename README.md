@@ -11,3 +11,5 @@ Steps to deploy a new version, after the first install:
 * perform local changes or pull remote changes with `git pull`
 * execute `sudo ./deploy.sh`
 * review the output
+
+This process has been tested on Ubuntu 24.04.
