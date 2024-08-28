@@ -21,5 +21,7 @@ rsync -a ./$DJANGO_PROJ_NAME $DJANGO_HOMEDIR/
 # make sure all the content belongs do DJANGO_USERNAME
 chown -R $DJANGO_USERNAME:$DJANGO_USERNAME $DJANGO_HOMEDIR
 
+echo "Deployment finished"
+
 # print user friendly output
 print_output_deploy
