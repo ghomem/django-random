@@ -8,5 +8,5 @@ Steps to install
 
 Steps to deploy, after the first install:
 
-* execute `sudo ./install.sh`
+* execute `sudo ./deploy.sh`
 * review the output
