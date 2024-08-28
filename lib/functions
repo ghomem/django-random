@@ -44,3 +44,19 @@ function print_output () {
 
 }
 
+function print_output_deploy () {
+
+  echo
+  echo "Project is at $DJANGO_HOMEDIR/$DJANGO_PROJ_NAME"
+  echo "App is at $DJANGO_HOMEDIR/$DJANGO_PROJ_NAME/$DJANGO_APP_NAME"
+  echo
+  echo "In case the appplication is not running you can now start it with:"
+  echo "  sudo su - $DJANGO_USERNAME python3 -c \"$DJANGO_HOMEDIR/$DJANGO_PROJ_NAME/manage.py runserver\""
+  echo
+  echo "The following URLs will be available:"
+  echo "  * App URL:   http://127.0.0.1:8000/$DJANGO_APP_NAME"
+  echo "  * Admin URL: http://127.0.0.1:8000/admin"
+  echo
+
+}
+

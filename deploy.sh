@@ -22,4 +22,4 @@ rsync -a ./$DJANGO_PROJ_NAME $DJANGO_HOMEDIR/
 chown -R $DJANGO_USERNAME:$DJANGO_USERNAME $DJANGO_HOMEDIR
 
 # print user friendly output
-print_output
+print_output_deploy
