@@ -15,7 +15,7 @@
 	  {% for number in number_list %}
 	    <tr>
 	      <td>{{ number.number }}</td>
-	      <td>{{ number.gen_date }}</td>
+	      <td>{{ number.gen_date | date:"Y-m-d H:i:s" }}</td>
 	    </tr>
           {% endfor %} 
     {% else %}

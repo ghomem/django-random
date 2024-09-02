@@ -12,3 +12,8 @@ class Number(models.Model):
     # without this we would not get unique values
     number   = models.IntegerField(default=gen_random_number)
     gen_date = models.DateTimeField(default=timezone.now)
+
+    # this is what is shown in the list of objects in /admin
+    # unless it is overriden by the NumberAdmin class (see admin.py)
+    def __str__(self):
+        return str(self.number)
