@@ -3,8 +3,10 @@ from django.utils import timezone
 
 import random
 
+
 def gen_random_number():
-    return int(random.random()*1000000)
+    return int(random.random() * 1000000)
+
 
 class Number(models.Model):
 
