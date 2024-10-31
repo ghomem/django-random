@@ -10,12 +10,14 @@
 	<thead>
 	  <th scope="col">Number</th>
 	  <th scope="col">Generation timestamp</th>
+    <th scope="col">Author</th>
 	</thead>
 	<tbody>
 	  {% for number in number_list %}
 	    <tr>
 	      <td>{{ number.number }}</td>
 	      <td>{{ number.gen_date | date:"Y-m-d H:i:s" }}</td>
+        <td>{{ number.author.username }}</td>
 	    </tr>
           {% endfor %} 
     {% else %}
