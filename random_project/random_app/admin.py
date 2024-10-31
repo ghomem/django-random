@@ -6,7 +6,7 @@ from .models import Number
 class NumberAdmin(admin.ModelAdmin):
 
     # we force the date to be format in a specific way
-    list_display = ["number", "custom_gen_date"]
+    list_display = ["number", "author", "custom_gen_date"]
 
     def custom_gen_date(self, obj):
         return obj.gen_date.strftime("%Y-%m-%d %H:%M:%S")
