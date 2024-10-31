@@ -24,7 +24,7 @@ def index(request):
 @login_required
 def get_number(request):
 
-    obj_number = Number()
+    obj_number = Number(author=request.user)
     obj_number.save()
 
     number = obj_number.number
