@@ -7,13 +7,13 @@ WORKDIR /app
 # Install necessary dependencies
 RUN apt-get update && \
     apt-get install -y \
-    python3 \
-    python3-pip \
     python3-django \
     python3-djangorestframework \
     python3-psycopg2 \
     gunicorn \
     postgresql-client \
+    vim \
+    rsync \
     makepasswd && \
     rm -rf /var/lib/apt/lists/*
 
@@ -34,5 +34,4 @@ EXPOSE 8000
 # Set the entrypoint script and default command
 ENTRYPOINT ["/create_superuser.sh"]
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
-
 
