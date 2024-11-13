@@ -3,6 +3,10 @@
 # load variables from configuration file
 . conf/vars.env
 
+if [ -n "$1" ]; then
+    DJANGO_PORT="$1"
+fi
+
 # load functions from function library file
 . lib/functions
 
