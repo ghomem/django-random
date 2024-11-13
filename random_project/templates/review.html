@@ -27,6 +27,11 @@
   </div>
 </article>
 
+<form action="{% url 'user_statistics' %}" method="post">
+  {% csrf_token %}
+  <button type="submit">Show user statistics</button>
+</form>
+
 <form action="{% url 'delete_history' %}" method="post">
   {% csrf_token %}
   <button type="submit">Delete user history</button>
@@ -34,7 +39,7 @@
 
 <form action="{% url 'logout' %}" method="post">
   {% csrf_token %}
-  <button type="submit">Log Out</button>
+  <button type="submit">Log out</button>
 </form>
 
 {% endblock %}
