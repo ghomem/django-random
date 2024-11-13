@@ -40,6 +40,7 @@ def review(request):
 
     return render(request, 'review.html', locals())
 
+
 @login_required
 def delete_history(request):
     Number.objects.filter(author=request.user).delete()
