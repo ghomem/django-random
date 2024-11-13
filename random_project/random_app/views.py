@@ -51,25 +51,23 @@ def user_statistics(request):
     user_numbers = Number.objects.filter(author=request.user)
 
     total_numbers = user_numbers.count()
-    max_number = user_numbers.aggregate(Max('number'))[
-        'number__max'] if total_numbers > 0 else None
-    min_number = user_numbers.aggregate(Min('number'))[
-        'number__min'] if total_numbers > 0 else None
+
+    max_number = user_numbers.aggregate(Max('number'))['number__max'] if total_numbers > 0 else None
+    min_number = user_numbers.aggregate(Min('number'))['number__min'] if total_numbers > 0 else None
     sum_numbers = user_numbers.aggregate(Sum('number'))['number__sum']
-    average_number = round(sum_numbers / total_numbers,
-                           2) if total_numbers > 0 else None
-    first_generated = user_numbers.earliest(
-        'gen_date').gen_date if total_numbers > 0 else None
-    last_generated = user_numbers.latest(
-        'gen_date').gen_date if total_numbers > 0 else None
+
+    average_number = round(sum_numbers / total_numbers, 2) if total_numbers > 0 else None
+
+    first_generated = user_numbers.earliest('gen_date').gen_date if total_numbers > 0 else None
+    last_generated = user_numbers.latest('gen_date').gen_date if total_numbers > 0 else None
 
     context = {
-        'total_numbers': total_numbers,
-        'max_number': max_number,
-        'min_number': min_number,
-        'average_number': average_number,
+        'total_numbers'  : total_numbers,
+        'max_number'     : max_number,
+        'min_number'     : min_number,
+        'average_number' : average_number,
         'first_generated': first_generated,
-        'last_generated': last_generated,
+        'last_generated' : last_generated,
     }
 
     return render(request, 'user_statistics.html', context)
