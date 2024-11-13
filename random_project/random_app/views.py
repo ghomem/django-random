@@ -39,3 +39,9 @@ def review(request):
     number_list = Number.objects.all()
 
     return render(request, 'review.html', locals())
+
+@login_required
+def delete_history(request):
+    Number.objects.filter(author=request.user).delete()
+
+    return redirect('review')

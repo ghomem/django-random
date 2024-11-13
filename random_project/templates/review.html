@@ -19,17 +19,22 @@
 	      <td>{{ number.gen_date | date:"Y-m-d H:i:s" }}</td>
         <td>{{ number.author.username }}</td>
 	    </tr>
-          {% endfor %} 
+          {% endfor %}
     {% else %}
       <p>No numbers are available.</p>
-    {% endif %} 
+    {% endif %}
       </table>
   </div>
 </article>
 
+<form action="{% url 'delete_history' %}" method="post">
+  {% csrf_token %}
+  <button type="submit">Delete user history</button>
+</form>
+
 <form action="{% url 'logout' %}" method="post">
   {% csrf_token %}
-  <button type="submit">Log Out</button>
+  <button type="submit">Log out</button>
 </form>
 
 {% endblock %}
