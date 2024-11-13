@@ -1,0 +1,18 @@
+{% extends "base_nav.html" %}
+
+{% block content %}
+
+<h2>Statistics of user {{ user.username }}</h2>
+
+<ul>
+    <li><strong>Total numbers generated:</strong> {{ total_numbers }}</li>
+    <li><strong>Highest number generated:</strong> {{ max_number }}</li>
+    <li><strong>Lowest number generated:</strong> {{ min_number }}</li>
+    <li><strong>Average number generated:</strong> {{ average_number }}</li>
+    <li><strong>First number generation date:</strong> {{ first_generated|date:"Y-m-d H:i:s" }}</li>
+    <li><strong>Last number generation date:</strong> {{ last_generated|date:"Y-m-d H:i:s" }}</li>
+</ul>
+
+<a href="{% url 'review' %}">Return to review page</a>
+
+{% endblock %}
