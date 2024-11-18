@@ -40,6 +40,9 @@ handle_error $? "Error installing packages"
 # copy the application to the destination directory
 cp -R random_project $DJANGO_HOMEDIR/random_project
 
+# create the database directory
+mkdir -p $DJANGO_HOMEDIR/random_project/db
+
 # make sure all the content belongs do DJANGO_USERNAME
 chown -R $DJANGO_USERNAME:$DJANGO_USERNAME $DJANGO_HOMEDIR
 
