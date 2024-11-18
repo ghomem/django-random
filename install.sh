@@ -18,17 +18,24 @@ my_id=$(id -u)
 test $my_id -eq 0
 handle_error $? "Please run this script as root."
 
-echo "Installing Django related packages"
-apt-get update &> /dev/null
-apt-get install -y -q=2 $DJANGO_PACKAGES &> /dev/null
-handle_error $? "Error installing packages"
-
 DJANGO_SUPERUSER_PASSWORD=$(makepasswd)
 
 echo "Creating user $DJANGO_USERNAME for Django execution"
 echo
+
+# checking if user exists
+getent passwd |grep -w "^django"
+let result=1-$?
+handle_error $result "User $DJANGO_USERNAME already exists. This app might have been installed already."
+
+# adding the user (this would no fail if the user exists, therefore the pre-check)
 adduser --system --home=$DJANGO_HOMEDIR --disabled-password --group --shell=/bin/bash $DJANGO_USERNAME
 handle_error $? "Error adding user $DJANGO_USERNAME"
+
+echo "Installing Django related packages"
+apt-get update &> /dev/null
+apt-get install -y -q=2 $DJANGO_PACKAGES &> /dev/null
+handle_error $? "Error installing packages"
 
 # copy the application to the destination directory
 cp -R random_project $DJANGO_HOMEDIR/random_project
