@@ -18,7 +18,10 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy application code to the container
-COPY . /app
+COPY random_project/ /app/
+
+# Copy entrypoint.py to the container
+COPY docker/entrypoint.py /app/entrypoint.py
 
 # Set environment variables for Django
 ENV PYTHONUNBUFFERED=1

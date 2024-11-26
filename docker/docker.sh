@@ -79,7 +79,7 @@ check_root
 
 
 if [ "$COMMAND" == "build" ]; then
-    docker build -t $IMAGE_NAME .
+    docker build -t $IMAGE_NAME -f Dockerfile ..
 
 elif [ "$COMMAND" == "create" ]; then
     if ! check_image_exists; then
