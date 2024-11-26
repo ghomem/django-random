@@ -35,7 +35,7 @@ def create_superuser():
         print(f"  * Username: {SUPERUSER_USERNAME}")
         print(f"  * Password: {SUPERUSER_PASSWORD}")
     else:
-        print("Superuser already exists.")
+        print(f"Superuser {SUPERUSER_USERNAME} already exists.")
 
 
 if __name__ == "__main__":
