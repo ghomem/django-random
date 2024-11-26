@@ -27,9 +27,6 @@ ENV DJANGO_SETTINGS_MODULE=random_project.settings
 # Expose port 8000 for the Django application
 EXPOSE 8000
 
-# Set a volume for the database
-VOLUME ["/app/db"]
-
 # Set the entrypoint script and default command
 ENTRYPOINT ["python3", "entrypoint.py"]
 
