@@ -164,7 +164,7 @@ elif [ "$COMMAND" == "remove" ]; then
 elif [ "$COMMAND" == "status" ]; then
     if ! check_container_exists; then
         echo "Container has not been created"
-        exit 1
+        exit 0
     fi
 
     echo "Container has been created."
