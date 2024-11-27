@@ -105,7 +105,7 @@ elif [ "$COMMAND" == "create" ]; then
     
 elif [ "$COMMAND" == "start" ]; then
     if ! check_container_exists; then
-        echo "Error: Container is not created. Please create the container first using --create"
+        echo "Error: Container is not created. Please create the container first using --create."
         exit 1
     fi
     if check_container_running; then
@@ -153,7 +153,7 @@ elif [ "$COMMAND" == "remove" ]; then
         exit 1
     fi
     if check_container_running; then
-        echo "Error: Container is still running.Please stop the container first using --stop"
+        echo "Error: Container is still running.Please stop the container first using --stop."
         exit 1
     fi
 
@@ -163,16 +163,16 @@ elif [ "$COMMAND" == "remove" ]; then
 
 elif [ "$COMMAND" == "status" ]; then
     if ! check_container_exists; then
-        echo "Container has not been created"
+        echo "Container has not been created."
         exit 0
     fi
 
     echo "Container has been created."
 
     if check_container_running; then
-        echo "Container is running"
+        echo "Container is running."
     else
-        echo "Container is not running"
+        echo "Container is not running."
     fi
 else
     usage
