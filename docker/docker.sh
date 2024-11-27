@@ -13,6 +13,7 @@ usage() {
     echo "  $0 --logs                  # Show the logs of the container running" 
     echo "  $0 --stop                  # Stop the container " 
     echo "  $0 --remove                # Remove the container " 
+    echo "  $0 --status                # Check the container status" 
     exit 1
 }
 
@@ -67,6 +68,10 @@ while [ $# -gt 0 ]; do
             ;;
         --remove)
             COMMAND="remove"
+            shift
+            ;;
+        --status)
+            COMMAND="status"
             shift
             ;;
         *)
@@ -151,11 +156,24 @@ elif [ "$COMMAND" == "remove" ]; then
         echo "Error: Container is still running.Please stop the container first using --stop"
         exit 1
     fi
-    
+
     docker rm $CONTAINER_NAME > /dev/null 2>&1
     
     echo "Container $CONTAINER_NAME removed succesfully."
 
+elif [ "$COMMAND" == "status" ]; then
+    if ! check_container_exists; then
+        echo "Container has not been created"
+        exit 1
+    fi
+
+    echo "Container has been created."
+
+    if check_container_running; then
+        echo "Container is running"
+    else
+        echo "Container is not running"
+    fi
 else
     usage
 fi
