@@ -15,12 +15,14 @@ usage() {
     echo "  $0 --remove                # Remove the container " 
     exit 1
 }
+
 check_root() {
     if [ "$(id -u)" -ne 0 ]; then
         echo "Error: Please run this script as root."
         exit 1
     fi
 }
+
 check_container_exists() {
     docker ps -a --filter "name=$CONTAINER_NAME" --format "{{.Names}}" | grep -wq "$CONTAINER_NAME"
 }
@@ -28,10 +30,10 @@ check_container_exists() {
 check_container_running() {
     docker ps --filter "name=$CONTAINER_NAME" --format "{{.Names}}" | grep -wq "$CONTAINER_NAME"
 }
+
 check_image_exists() {
     docker images --format "{{.Repository}}" | grep -wq "$IMAGE_NAME"
 }
-
 
 if [ $# -eq 0 ]; then
     usage
@@ -63,7 +65,6 @@ while [ $# -gt 0 ]; do
             COMMAND="stop"
             shift
             ;;
-            
         --remove)
             COMMAND="remove"
             shift
@@ -77,7 +78,6 @@ done
 
 check_root
 
-
 if [ "$COMMAND" == "build" ]; then
     docker build -t $IMAGE_NAME -f Dockerfile ..
 
@@ -90,10 +90,13 @@ elif [ "$COMMAND" == "create" ]; then
         echo "Error: Container is already created."
         exit 1
     fi
+
     docker create --name $CONTAINER_NAME \
     -p $DJANGO_PORT:$DJANGO_PORT \
     -e DJANGO_PORT="$DJANGO_PORT" \
-    $IMAGE_NAME
+    $IMAGE_NAME > /dev/null 2>&1
+    
+    echo "Container $CONTAINER_NAME created successfully on port $DJANGO_PORT."
     
 elif [ "$COMMAND" == "start" ]; then
     if ! check_container_exists; then
@@ -104,7 +107,10 @@ elif [ "$COMMAND" == "start" ]; then
         echo "Error: Container is already running."
         exit 1
     fi
-    docker start $CONTAINER_NAME
+
+    docker start $CONTAINER_NAME > /dev/null 2>&1
+    
+    echo "Started container $CONTAINER_NAME. Please run docker.sh --logs for more information."
 
 elif [ "$COMMAND" == "logs" ]; then
     if ! check_container_exists; then
@@ -115,7 +121,12 @@ elif [ "$COMMAND" == "logs" ]; then
         echo "Error: Container is not running."
         exit 1
     fi
+
     docker logs $CONTAINER_NAME
+
+    echo "The following URLs will be available:"
+    echo "  * App URL:    http://127.0.0.1:$DJANGO_PORT/random_app"
+    echo "  * Admin URL:  http://127.0.0.1:$DJANGO_PORT/admin"
 
 elif [ "$COMMAND" == "stop" ]; then
     if ! check_container_exists; then
@@ -125,8 +136,11 @@ elif [ "$COMMAND" == "stop" ]; then
     if ! check_container_running; then
         echo "Error: Container is not running."
         exit 1
-    fi    
-    docker stop $CONTAINER_NAME
+    fi   
+
+    docker stop $CONTAINER_NAME > /dev/null 2>&1
+    
+    echo "Container $CONTAINER_NAME stopped succesfully."
 
 elif [ "$COMMAND" == "remove" ]; then
     if ! check_container_exists; then
@@ -137,7 +151,11 @@ elif [ "$COMMAND" == "remove" ]; then
         echo "Error: Container is still running.Please stop the container first using --stop"
         exit 1
     fi
-    docker rm $CONTAINER_NAME
+    
+    docker rm $CONTAINER_NAME > /dev/null 2>&1
+    
+    echo "Container $CONTAINER_NAME removed succesfully."
+
 else
     usage
 fi
