@@ -88,11 +88,11 @@ if [ "$COMMAND" == "build" ]; then
 
 elif [ "$COMMAND" == "create" ]; then
     if ! check_image_exists; then
-        echo "Error: Image does not exist. Please build the image first using --build."
+        echo "Error: image does not exist. Please build the image first using --build."
         exit 1
     fi
     if check_container_exists; then
-        echo "Error: Container is already created."
+        echo "Error: container is already created."
         exit 1
     fi
 
@@ -105,11 +105,11 @@ elif [ "$COMMAND" == "create" ]; then
     
 elif [ "$COMMAND" == "start" ]; then
     if ! check_container_exists; then
-        echo "Error: Container is not created. Please create the container first using --create."
+        echo "Error: container is not created. Please create the container first using --create."
         exit 1
     fi
     if check_container_running; then
-        echo "Error: Container is already running."
+        echo "Error: container is already running."
         exit 1
     fi
 
@@ -119,11 +119,11 @@ elif [ "$COMMAND" == "start" ]; then
 
 elif [ "$COMMAND" == "logs" ]; then
     if ! check_container_exists; then
-        echo "Error: Container is not created."
+        echo "Error: container is not created."
         exit 1
     fi
     if ! check_container_running; then
-        echo "Error: Container is not running."
+        echo "Error: container is not running."
         exit 1
     fi
 
@@ -135,11 +135,11 @@ elif [ "$COMMAND" == "logs" ]; then
 
 elif [ "$COMMAND" == "stop" ]; then
     if ! check_container_exists; then
-        echo "Error: Container is not created."
+        echo "Error: container is not created."
         exit 1
     fi
     if ! check_container_running; then
-        echo "Error: Container is not running."
+        echo "Error: container is not running."
         exit 1
     fi   
 
@@ -149,11 +149,11 @@ elif [ "$COMMAND" == "stop" ]; then
 
 elif [ "$COMMAND" == "remove" ]; then
     if ! check_container_exists; then
-        echo "Error: Container is not created."
+        echo "Error: container is not created."
         exit 1
     fi
     if check_container_running; then
-        echo "Error: Container is still running.Please stop the container first using --stop."
+        echo "Error: container is still running. Please stop the container first using --stop."
         exit 1
     fi
 
